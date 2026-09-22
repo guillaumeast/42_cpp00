@@ -1,9 +1,12 @@
-NAME		:= megaphone
+NAME		:= phonebook
 
 CXX			:= c++
 CXXFLAGS	:= -Wall -Wextra -Werror -std=c++98
 INCLUDES	:= .
-SRCS		:= megaphone.cpp
+SRCS		:= main.cpp \
+			   Contact.cpp \
+			   PhoneBook.cpp \
+			   helpers.cpp
 
 OBJ_DIR		:= obj
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
