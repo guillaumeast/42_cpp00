@@ -29,7 +29,7 @@ class PhoneBook
 		
 		void		displayContactsTable(void) const;
 		void		displayContact(const Contact& contact) const;
-		std::string	displayContactCell(const std::string& value) const;
+		std::string	formatContactCell(const std::string& value) const;
 		void		displayContactsRow(
 						const std::string&	index,
 						const std::string&	firstName,

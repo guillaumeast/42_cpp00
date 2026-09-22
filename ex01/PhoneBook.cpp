@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 #include "helpers.hpp"
@@ -86,28 +87,18 @@ void	PhoneBook::displayContactsRow(
 			const std::string&	nickName) const
 {
 	std::cout
-		<< displayContactCell(index)		<< "|"
-		<< displayContactCell(firstName)	<< "|"
-		<< displayContactCell(lastName)		<< "|"
-		<< displayContactCell(nickName)
+		<< std::setw(CELL_MAX_CHAR) << formatContactCell(index) << "|"
+		<< std::setw(CELL_MAX_CHAR) << formatContactCell(firstName) << "|"
+		<< std::setw(CELL_MAX_CHAR) << formatContactCell(lastName) << "|"
+		<< std::setw(CELL_MAX_CHAR) << formatContactCell(nickName)
 		<< std::endl;
 }
 
-std::string	PhoneBook::displayContactCell(const std::string& value) const
+std::string	PhoneBook::formatContactCell(const std::string& value) const
 {
-	int			padding;
-	std::string	cell_content;
-
-	padding = CELL_MAX_CHAR - static_cast<int>(value.length());
-	if (padding < 0)
-		cell_content = value.substr(0, 9) + ".";
-	else
-	{
-		for (int i = 0; i < padding; ++i)
-			cell_content += " ";
-		cell_content += value;
-	}
-	return (cell_content);
+	if (value.length() > CELL_MAX_CHAR)
+		return (value.substr(0, CELL_MAX_CHAR - 1) + ".");
+	return (value);
 }
 
 void	PhoneBook::displayContact(const Contact& contact) const
